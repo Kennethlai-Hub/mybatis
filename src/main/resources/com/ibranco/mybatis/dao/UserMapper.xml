@@ -10,4 +10,26 @@
     <insert id="saveUser" parameterType="com.ibranco.mybatis.entity.User">
         insert into user (username,password,name,sex,age,credate) value (#{username},#{password},#{name},#{sex},#{age},#{credate});
     </insert>
+    <update id="updateUser" parameterType="com.ibranco.mybatis.entity.User">
+        update user set username = #{username},password = #{password},name = #{name},sex = #{sex},age = #{age},credate = #{credate} where id = #{id}
+    </update>
+    <select id="findByID" resultType="com.ibranco.mybatis.entity.User">
+        select * from user where id = #{id}
+    </select>
+    <delete id="deleteById">
+        delete from user where id = #{id}
+    </delete>
+    <select id="findByUserName" resultType="com.ibranco.mybatis.entity.User">
+        select * from user where username like "%"#{username}"%"
+    </select>
+    <select id="findByUserName2" resultType="com.ibranco.mybatis.entity.User">
+        <!-- select * from user where username like "%"#{username}"%" -->
+        select * from user where username like concat("%",#{username},"%")
+    </select>
+    <select id="getCount" resultType="Integer">
+        select count(id) from user
+    </select>
+    <select id="findByVo" resultType="com.ibranco.mybatis.entity.QueryVo">
+        select * from user where username like "%"#{user.username}"%"
+    </select>
 </mapper>
