@@ -29,12 +29,12 @@ public class MybatisDemo01 {
         inputStream = Resources.getResourceAsStream("mybatis-config.xml");
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
         SqlSessionFactory sqlSessionFactory = builder.build(inputStream);
-        sqlSession = sqlSessionFactory.openSession();
+        sqlSession = sqlSessionFactory.openSession(true);
         userDao = sqlSession.getMapper(UserDao.class);
     }
     @After
     public void destory() throws IOException {
-        sqlSession.commit();
+//        sqlSession.commit();
         sqlSession.close();
         inputStream.close();
 

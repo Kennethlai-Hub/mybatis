@@ -44,9 +44,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     public Integer deleteById(Integer id) {
-        SqlSession sqlSession = factory.openSession();
+        SqlSession sqlSession = factory.openSession(true);
         int update = sqlSession.update("com.ibranco.mybatis.dao.UserDao.deleteById", id);
-        sqlSession.commit();
         sqlSession.close();
         return update;
     }
